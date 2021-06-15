@@ -40,4 +40,30 @@ class IsolationTest extends TestCase
 			require_isolated($this->dir . 'return-var.php', $data)
 		);
 	}
+
+	public function testIsolationIntoClass() : void
+	{
+		$class = new class() {
+			protected string $filename = __DIR__ . '/files/into-class.php';
+
+			public function test() : string
+			{
+				return 'test';
+			}
+
+			public function nonIsolated() : mixed
+			{
+				return require $this->filename;
+			}
+
+			public function isolated() : mixed
+			{
+				return require_isolated($this->filename);
+			}
+		};
+		self::assertSame('test', $class->nonIsolated());
+		$this->expectException(\Error::class);
+		$this->expectExceptionMessage('Using $this when not in object context');
+		$class->isolated();
+	}
 }
