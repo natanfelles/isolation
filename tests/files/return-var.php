@@ -1,2 +1,2 @@
 <?php
-return $var;
+return $var; // @phpstan-ignore-line

@@ -1,2 +1,2 @@
 <?php
-return $data;
+return $data; // @phpstan-ignore-line
