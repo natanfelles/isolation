@@ -8,7 +8,7 @@
 		"require"
 	],
 	"homepage": "https://the-framework.gitlab.io/libraries/isolation.html",
-	"license": "proprietary",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Natan Felles",
