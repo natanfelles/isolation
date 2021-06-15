@@ -10,7 +10,7 @@
  *
  * @return mixed The return of the require
  */
-function requireIsolated(string $filename, array $data = []) : mixed
+function require_isolated(string $filename, array $data = []) : mixed
 {
 	if ($data) {
 		extract($data, \EXTR_OVERWRITE);
