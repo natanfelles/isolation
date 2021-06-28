@@ -27,9 +27,11 @@ class Isolation
 	 */
 	public static function require(string $filename, array $data = []) : mixed
 	{
-		if ($data) {
-			\extract($data, \EXTR_OVERWRITE);
-		}
-		return require $filename;
+		return (static function () use ($filename, $data) {
+			if ($data) {
+				\extract($data, \EXTR_OVERWRITE);
+			}
+			return require $filename;
+		})();
 	}
 }

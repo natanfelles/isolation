@@ -20,9 +20,9 @@ class TestClass
 		$this->filename = $filename;
 	}
 
-	public function test() : string
+	public function testThis() : string
 	{
-		return 'test';
+		return 'test-this';
 	}
 
 	public function requireNonIsolated() : mixed
@@ -33,5 +33,10 @@ class TestClass
 	public function requireIsolated() : mixed
 	{
 		return Isolation::require($this->filename);
+	}
+
+	public static function testSelf() : string
+	{
+		return 'test-self';
 	}
 }
