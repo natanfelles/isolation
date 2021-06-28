@@ -33,9 +33,9 @@
 		"sort-packages": true
 	},
 	"autoload": {
-		"files": [
-			"src/isolation.php"
-		]
+		"psr-4": {
+			"Framework\\Isolation\\": "src/"
+		}
 	},
 	"autoload-dev": {
 		"psr-4": {
