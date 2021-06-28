@@ -51,29 +51,12 @@ class IsolationTest extends TestCase
 		);
 	}
 
-	public function testIsolationIntoClass() : void
+	public function testRequireIntoClassWithThis() : void
 	{
-		$class = new class() {
-			protected string $filename = __DIR__ . '/files/into-class.php';
-
-			public function test() : string
-			{
-				return 'test';
-			}
-
-			public function nonIsolated() : mixed
-			{
-				return require $this->filename;
-			}
-
-			public function isolated() : mixed
-			{
-				return Isolation::require($this->filename);
-			}
-		};
-		self::assertSame('test', $class->nonIsolated());
+		$class = new TestClass(__DIR__ . '/files/into-class-this.php');
+		self::assertSame('test', $class->requireNonIsolated());
 		$this->expectException(\Error::class);
 		$this->expectExceptionMessage('Using $this when not in object context');
-		$class->isolated();
+		$class->requireIsolated();
 	}
 }
